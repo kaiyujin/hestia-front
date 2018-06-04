@@ -1,4 +1,13 @@
 module.exports = {
+  modules: [
+    '@nuxtjs/proxy',
+    '@nuxtjs/axios'
+  ],
+  axios: {
+  },
+  proxy: {
+    '/api': 'http://localhost:8080'
+  },
   /*
   ** Headers of the page
   */
