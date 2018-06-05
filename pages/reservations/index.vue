@@ -19,11 +19,11 @@
         </v-tooltip>
       </template>
       <template slot="items" slot-scope="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.calories }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
-        <td class="text-xs-right">{{ props.item.carbs }}</td>
-        <td class="text-xs-right">{{ props.item.protein }}</td>
+        <td class="text-xs-left">{{ props.item.name }}</td>
+        <td class="text-xs-left">{{ props.item.calories }}</td>
+        <td class="text-xs-left">{{ props.item.fat }}</td>
+        <td class="text-xs-left">{{ props.item.carbs }}</td>
+        <td class="text-xs-left">{{ props.item.protein }}</td>
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
@@ -46,18 +46,17 @@
           {
             text: '来店時間',
             align: 'left',
-            sortable: false,
             value: 'name'
           },
-          { text: 'ご予約者名', value: 'calories' },
+          { text: 'ご予約者名', value: 'calories', sortable: false,},
           { text: '人数', value: 'fat' },
           { text: 'テーブル', value: 'carbs' },
-          { text: '備考', value: 'protein' }
+          { text: '備考', value: 'protein', sortable: false,}
         ],
         desserts: [
           {
             value: false,
-            name: 'Frozen Yogurt',
+            name: '17:00',
             calories: 159,
             fat: 6.0,
             carbs: 24,
@@ -65,7 +64,7 @@
           },
           {
             value: false,
-            name: 'Ice cream sandwich',
+            name: '17:30',
             calories: 237,
             fat: 9.0,
             carbs: 37,
@@ -73,7 +72,7 @@
           },
           {
             value: false,
-            name: 'Eclair',
+            name: '17:30',
             calories: 262,
             fat: 16.0,
             carbs: 23,
@@ -81,7 +80,7 @@
           },
           {
             value: false,
-            name: 'Cupcake',
+            name: '18:00',
             calories: 305,
             fat: 3.7,
             carbs: 67,
@@ -89,7 +88,7 @@
           },
           {
             value: false,
-            name: 'Gingerbread',
+            name: '18:00',
             calories: 356,
             fat: 16.0,
             carbs: 49,
@@ -97,7 +96,7 @@
           },
           {
             value: false,
-            name: 'Jelly bean',
+            name: '18:00',
             calories: 375,
             fat: 0.0,
             carbs: 94,
@@ -105,7 +104,7 @@
           },
           {
             value: false,
-            name: 'Lollipop',
+            name: '18:30',
             calories: 392,
             fat: 0.2,
             carbs: 98,
@@ -113,7 +112,7 @@
           },
           {
             value: false,
-            name: 'Honeycomb',
+            name: '18:30',
             calories: 408,
             fat: 3.2,
             carbs: 87,
@@ -121,7 +120,7 @@
           },
           {
             value: false,
-            name: 'Donut',
+            name: '18:30',
             calories: 452,
             fat: 25.0,
             carbs: 51,
@@ -129,7 +128,7 @@
           },
           {
             value: false,
-            name: 'KitKat',
+            name: '19:00',
             calories: 518,
             fat: 26.0,
             carbs: 65,
