@@ -38,7 +38,9 @@
     data () {
       return {
         search: '',
-        pagination: {},
+        pagination: {
+          rowsPerPage: 10
+        },
         selected: [],
         headers: [
           {
