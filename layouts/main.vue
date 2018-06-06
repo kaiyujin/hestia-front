@@ -36,13 +36,13 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>
         {{date}}
-        <v-btn outline color="white">
+        <v-btn outline color="white" @click="prev_day">
           <v-icon>keyboard_arrow_left</v-icon>
         </v-btn>
-        <v-btn outline color="white">
+        <v-btn outline color="white" @click="today">
         Today
         </v-btn>
-        <v-btn outline color="white">
+        <v-btn outline color="white" @click="next_day">
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-toolbar-title>
@@ -131,6 +131,15 @@ html {
       },
       logout(e){
         this.$router.push('/')
+      },
+      prev_day(){
+        this.date = moment(this.date).subtract(1, 'days').format('YYYY/MM/DD')
+      },
+      today(){
+        this.date = moment(new Date()).format('YYYY/MM/DD')
+      },
+      next_day(){
+			  this.date = moment(this.date).add(1, 'days').format('YYYY/MM/DD')
       }
     }
   }
