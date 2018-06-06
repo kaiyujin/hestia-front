@@ -3,7 +3,7 @@ module.exports = {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
-    '@nuxtjs/pwa'
+    //'@nuxtjs/pwa'
   ],
   axios: {
   },
