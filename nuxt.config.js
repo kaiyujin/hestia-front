@@ -35,10 +35,12 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  plugins: ['~/plugins/vee-validate'],
   /*
   ** Build configuration
   */
   build: {
+    vendor: ['vee-validate'],
     /*
     ** Run ESLint on save
     */

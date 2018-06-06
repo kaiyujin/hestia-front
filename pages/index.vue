@@ -9,8 +9,15 @@
               <v-card-title primary-title>
                 <h4>Login</h4>
               </v-card-title>
-              <v-form ref="form" v-model="valid" lazy-validation>
-                <v-text-field prepend-icon="person" name="Username" label="Username" required></v-text-field>
+              <v-form ref="form">
+                <v-text-field prepend-icon="person"
+                              v-model="Username"
+                              label="Username"
+                              required
+                              v-validate="'required|max:255'"
+                              :error-messages="errors.collect('Username')"
+                              data-vv-name="Username"
+                ></v-text-field>
                 <v-text-field prepend-icon="lock" name="Password" label="Password" type="password"></v-text-field>
                 <v-card-actions>
                   <v-btn primary round large block color="blue lighten-3" @click="submit">Login</v-btn>
@@ -25,42 +32,34 @@
 </template>
 
 <script>
-  import axios from 'axios'
-
   export default {
+
     data: () => ({
-      valid: true,
-      name: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4'
-      ],
-      checkbox: false
+      Username: '',
+      Password: '',
+      dictionary: {
+        attributes: {
+          //Username: 'E-mail Address'
+        },
+        custom: {
+          password: {
+            required: () => 'pass can not be empty',
+            max: 'The name field may not be greater than 100 characters'
+            // custom messages
+          }
+        }
+      }
     }),
+
+    mounted () {
+      this.$validator.localize('en', this.dictionary)
+    },
 
     methods: {
       submit () {
-        if (this.$refs.form.validate()) {
-          // Native form submission is not yet supported
-          axios.post('/api/submit', {
-            name: this.name,
-            email: this.email,
-            select: this.select,
-            checkbox: this.checkbox
-          })
-        }
+        this.$validator.validateAll().then(result => {
+            if (result) this.$router.push('/reservations/')
+        })
       }
     }
   }
