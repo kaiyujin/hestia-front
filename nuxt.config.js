@@ -2,7 +2,8 @@ module.exports = {
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/pwa'
   ],
   axios: {
   },
