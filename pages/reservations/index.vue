@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" max-width="500px">
+    <v-container fluid>
+      <v-layout row>
+        <v-flex xs6 sm10 md11></v-flex>
+        <v-flex xs6 sm2 md1>
+    <v-dialog v-model="dialog" max-width="800px">
       <v-btn slot="activator" color="primary" dark class="mb-2">新規予約</v-btn>
       <v-card>
         <v-card-title>
@@ -34,6 +38,9 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <v-data-table
       :headers="headers"
       :items="desserts"
