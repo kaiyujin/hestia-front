@@ -34,7 +34,7 @@
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Global booking tables</v-toolbar-title>
+      <v-toolbar-title>{{date}}</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
@@ -102,9 +102,11 @@ html {
 </style>
 
 <script>
+  import moment from 'moment';
   export default {
     data: () => ({
-      drawer: null
+      drawer: null,
+      date: moment(new Date()).format('YYYY/MM/DD')
     }),
     props: {
       source: String
