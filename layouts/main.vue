@@ -34,7 +34,18 @@
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>{{date}}</v-toolbar-title>
+      <v-toolbar-title>
+        {{date}}
+        <v-btn outline color="white">
+          <v-icon>keyboard_arrow_left</v-icon>
+        </v-btn>
+        <v-btn outline color="white">
+        Today
+        </v-btn>
+        <v-btn outline color="white">
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
