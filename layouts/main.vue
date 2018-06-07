@@ -14,14 +14,26 @@
             <v-list-tile-title>予約</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="settings">
-          <v-list-tile-action>
-            <v-icon>settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>設定</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <v-list>
+        <v-list-group
+          v-for="item in items"
+          v-model="item.active"
+          :key="item.title"
+          :prepend-icon="item.action"
+          no-action
+        >
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="settings(subItem.action)">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-group>
+        </v-list>
         <v-list-tile @click="logout">
           <v-list-tile-action>
             <v-icon>clear</v-icon>
@@ -117,19 +129,31 @@ html {
   export default {
     data: () => ({
       drawer: null,
-      date: moment(new Date()).format('YYYY/MM/DD')
+      date: moment(new Date()).format('YYYY/MM/DD'),
+      items: [
+        {
+          action: 'settings',
+          title: '設定',
+          active: true,
+          items: [
+            { title: '店舗基本情報' ,action: 'shop'},
+            { title: 'テーブル' ,action: 'table'},
+            { title: 'WEB予約' ,action: 'reservation'}
+          ]
+        }
+      ]
     }),
     props: {
       source: String
     },
 		methods :{
-			reservations(e) {
+			reservations() {
         this.$router.push('/reservations/')
       },
-			settings(e) {
-  			alert('/settings/')
+			settings(action) {
+        this.$router.push('/settings/' + action)
       },
-      logout(e){
+      logout(){
         this.$router.push('/')
       },
       prev_day(){
