@@ -17,9 +17,9 @@
         <v-flex sm1 md1></v-flex>
         <v-flex sm5 md5>
           <v-text-field
-            v-validate="'required|max:10'"
+            v-validate="'required|max:255'"
             v-model="Email"
-            :counter="10"
+            :counter="255"
             :error-messages="errors.collect('Email')"
             label="Email"
             data-vv-name="Email"
@@ -27,6 +27,31 @@
           ></v-text-field>
         </v-flex>
         <v-flex sm1 md1></v-flex>
+
+        <v-flex sm3 md3>
+          <v-select
+            v-validate="'required'"
+            :items="countries"
+            v-model="Country"
+            :error-messages="errors.collect('Country')"
+            label="Country"
+            data-vv-name="Country"
+            required
+          ></v-select>
+        </v-flex>
+        <v-flex sm1 md1></v-flex>
+        <v-flex sm3 md3>
+          <v-select
+            v-validate="'required'"
+            :items="timezones"
+            v-model="Timezone"
+            :error-messages="errors.collect('Timezone')"
+            label="Timezone"
+            data-vv-name="Timezone"
+            required
+          ></v-select>
+        </v-flex>
+
         <v-flex sm11 md11 class="text-xs-right">
           <v-btn @click="submit" color="primary">submit</v-btn>
         </v-flex>
@@ -42,16 +67,23 @@
   export default {
     layout: 'main',
     data: () => ({
-      Name: '',
+      ShopName: '',
       Email: '',
+      Country: null,
+      Timezone: null,
+      countries: [
+        'Japan',
+        'Vietnam'
+      ],
+      timezones: [
+        'JST(+9:00)',
+        'ICT(+7:00)'
+      ],
       dictionary: {
         attributes: {
 
         },
         custom: {
-          ShopName: {
-
-          }
         }
       }
     }),
