@@ -51,6 +51,19 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title>{{shopName}}</v-toolbar-title>
+      <v-menu :nudge-width="100">
+        <v-toolbar-title slot="activator">
+          <span>{{language}}</span>
+          <v-icon dark>arrow_drop_down</v-icon>
+        </v-toolbar-title>
+        <v-list>
+          <v-list-tile-content>
+            <v-list-tile v-for="item in languages" :key="item" ripple avatar>
+              <v-list-tile-title v-text="item" @click="change_language(item)"></v-list-tile-title>
+            </v-list-tile>
+          </v-list-tile-content>
+        </v-list>
+      </v-menu>
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -125,6 +138,7 @@
       drawer: null,
       date: moment(new Date()).format('YYYY/MM/DD'),
       shopName: 'Restaurant hoobar',
+      language: 'en',
       items: [
         {
           action: 'subtitles',
@@ -145,6 +159,11 @@
             {title: 'WEB予約', action: '/settings/reservation'}
           ]
         }
+      ],
+      languages: [
+        'en',
+        'ja',
+        'vi'
       ]
     }),
     props: {
@@ -168,6 +187,9 @@
       },
       next_day() {
         this.date = moment(this.date).add(1, 'days').format('YYYY/MM/DD')
+      },
+      change_language(language) {
+        this.language = language
       }
     }
   }
