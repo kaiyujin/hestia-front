@@ -15,12 +15,12 @@
         >
           <v-list-tile slot="activator">
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-title>{{ $t(item.title) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="link(subItem.action)">
             <v-list-tile-content>
-              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              <v-list-tile-title>{{ $t(subItem.title) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
@@ -30,7 +30,7 @@
             <v-icon>clear</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>ログアウト</v-list-tile-title>
+            <v-list-tile-title>{{$t('menu.logout')}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -154,6 +154,7 @@
 
 <script>
   import moment from 'moment';
+  import i18n from "../plugins/i18n";
 
   export default {
     data: () => ({
@@ -170,21 +171,21 @@
       items: [
         {
           action: 'subtitles',
-          title: '予約',
+          title: 'menu.reservation',
           active: true,
           items: [
-            {title: 'カレンダー', action: '/reservations'},
-            {title: '予約検索', action: '/reservations/search'},
+            {title: 'menu.reservation_calender', action: '/reservations'},
+            {title: 'menu.reservation_search', action: '/reservations/search'},
           ]
         },
         {
           action: 'settings',
-          title: '設定',
+          title: 'menu.settings',
           active: false,
           items: [
-            {title: '店舗基本情報', action: '/settings/shop'},
-            {title: 'テーブル', action: '/settings/table'},
-            {title: 'WEB予約', action: '/settings/reservation'}
+            {title: 'menu.settings_shop', action: '/settings/shop'},
+            {title: 'menu.settings_table', action: '/settings/table'},
+            {title: 'menu.settings_web_reservation', action: '/settings/reservation'}
           ]
         }
       ],

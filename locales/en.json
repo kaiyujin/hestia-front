@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "reservation": "reservation",
+    "reservation_calender": "calender",
+    "reservation_search": "search",
+    "settings": "settings",
+    "settings_shop": "shop",
+    "settings_table": "tables",
+    "settings_web_reservation": "web reservation",
+    "logout": "logout"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "reservation": "予約",
+    "reservation_calender": "予約カレンダー",
+    "reservation_search": "予約検索",
+    "settings": "設定",
+    "settings_shop": "店舗設定",
+    "settings_table": "テーブル設定",
+    "settings_web_reservation": "WEB予約設定",
+    "logout": "ログアウト"
+  }
+}
