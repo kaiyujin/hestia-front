@@ -6,11 +6,11 @@
         <v-flex sm5 md5>
           <v-text-field
             v-validate="'required|max:10'"
-            v-model="ShopName"
+            v-model="shop.ShopName"
             :counter="10"
-            :error-messages="errors.collect('ShopName')"
+            :error-messages="errors.collect('shop.ShopName')"
             label="Shop Name"
-            data-vv-name="ShopName"
+            data-vv-name="shop.ShopName"
             required
           ></v-text-field>
         </v-flex>
@@ -18,11 +18,11 @@
         <v-flex sm5 md5>
           <v-text-field
             v-validate="'required|max:255'"
-            v-model="Email"
+            v-model="shop.Email"
             :counter="255"
-            :error-messages="errors.collect('Email')"
+            :error-messages="errors.collect('shop.Email')"
             label="Email"
-            data-vv-name="Email"
+            data-vv-name="shop.Email"
             required
           ></v-text-field>
         </v-flex>
@@ -32,10 +32,10 @@
           <v-select
             v-validate="'required'"
             :items="countries"
-            v-model="Country"
-            :error-messages="errors.collect('Country')"
+            v-model="shop.Country"
+            :error-messages="errors.collect('shop.Country')"
             label="Country"
-            data-vv-name="Country"
+            data-vv-name="shop.Country"
             required
           ></v-select>
         </v-flex>
@@ -44,10 +44,10 @@
           <v-select
             v-validate="'required'"
             :items="timezones"
-            v-model="Timezone"
-            :error-messages="errors.collect('Timezone')"
+            v-model="shop.Timezone"
+            :error-messages="errors.collect('shop.Timezone')"
             label="Timezone"
-            data-vv-name="Timezone"
+            data-vv-name="shop.Timezone"
             required
           ></v-select>
         </v-flex>
@@ -67,10 +67,12 @@
   export default {
     layout: 'main',
     data: () => ({
-      ShopName: '',
-      Email: '',
-      Country: null,
-      Timezone: null,
+      shop: {
+        ShopName: '',
+        Email: '',
+        Country: null,
+        Timezone: null,
+      },
       countries: [
         'Japan',
         'Vietnam'
