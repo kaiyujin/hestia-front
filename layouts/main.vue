@@ -52,10 +52,22 @@
       <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
       <v-toolbar-title>{{shopName}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-badge overlap color="red">
-        <span slot="badge">{{notification_count}}</span>
-        <v-icon middle color="grey">notifications</v-icon>
-      </v-badge>
+      <v-bottom-sheet v-model="notification" class="pointer">
+        <v-badge slot="activator" overlap color="red">
+          <span slot="badge">{{notification_count}}</span>
+          <v-icon middle color="grey">notifications</v-icon>
+        </v-badge>
+        <v-list>
+          <v-subheader>Notifications</v-subheader>
+          <v-list-tile
+            v-for="n in notifications"
+            :key="n.title"
+            @click="notification = false"
+          >
+            <v-list-tile-title>{{n.title}}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-bottom-sheet>
       <v-menu :nudge-width="100">
         <v-toolbar-title slot="activator">
           <span>{{language}}</span>
@@ -133,6 +145,11 @@
     color: #fff;
     background-color: #35495e;
   }
+
+  .pointer {
+    cursor: pointer;
+  }
+
 </style>
 
 <script>
@@ -144,7 +161,12 @@
       date: moment(new Date()).format('YYYY/MM/DD'),
       shopName: 'Restaurant hoobar',
       language: 'en',
+      notification: null,
       notification_count: 2,
+      notifications: [
+        {title: '予約が入りました。'},
+        {title: 'キャンセルがあります。'},
+      ],
       items: [
         {
           action: 'subtitles',
