@@ -8,6 +8,7 @@
   export default {
     layout: 'main',
     data () {
+      return {}
     }
   }
 </script>
