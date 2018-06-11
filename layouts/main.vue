@@ -49,8 +49,13 @@
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
       <v-toolbar-title>{{shopName}}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-badge overlap color="red">
+        <span slot="badge">{{notification_count}}</span>
+        <v-icon middle color="grey">notifications</v-icon>
+      </v-badge>
       <v-menu :nudge-width="100">
         <v-toolbar-title slot="activator">
           <span>{{language}}</span>
@@ -139,6 +144,7 @@
       date: moment(new Date()).format('YYYY/MM/DD'),
       shopName: 'Restaurant hoobar',
       language: 'en',
+      notification_count: 2,
       items: [
         {
           action: 'subtitles',
