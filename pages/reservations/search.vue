@@ -5,7 +5,9 @@
         <v-flex xs6 sm10 md11></v-flex>
         <v-flex xs6 sm2 md1>
     <v-dialog v-model="dialog" max-width="800px">
-      <v-btn slot="activator" color="primary" dark class="mb-2">新規予約</v-btn>
+      <v-btn fab dark small slot="activator" color="brown darken-3">
+        <v-icon dark>add</v-icon>
+      </v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">{{ formTitle }}</span>
@@ -41,8 +43,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+          <v-btn color="#967D65" flat @click.native="close">Cancel</v-btn>
+          <v-btn color="#967D65" flat @click.native="save">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
