@@ -4,50 +4,50 @@
       <v-layout row>
         <v-flex xs6 sm10 md11></v-flex>
         <v-flex xs6 sm2 md1>
-    <v-dialog v-model="dialog" max-width="800px">
-      <v-btn fab dark small slot="activator" color="brown darken-3">
-        <v-icon dark>add</v-icon>
-      </v-btn>
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{ formTitle }}</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.time" label="time"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.name" label="name"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.person" label="person"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-select
-                  :items="tables"
-                  item-value="id"
-                  item-text="name"
-                  v-model="editedItem.tables"
-                  label="tables"
-                  return-object
-                  multiple
-                ></v-select>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.note" label="note"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="#967D65" flat @click.native="close">Cancel</v-btn>
-          <v-btn color="#967D65" flat @click.native="save">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+          <v-dialog v-model="dialog" max-width="800px">
+            <v-btn fab dark small slot="activator" color="brown darken-3">
+              <v-icon dark>add</v-icon>
+            </v-btn>
+            <v-card>
+              <v-card-title>
+                <span class="headline">{{ formTitle }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container grid-list-md>
+                  <v-layout wrap>
+                    <v-flex xs12 sm6 md4>
+                      <v-text-field v-model="editedItem.time" label="time"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4>
+                      <v-text-field v-model="editedItem.name" label="name"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4>
+                      <v-text-field v-model="editedItem.person" label="person"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4>
+                      <v-select
+                        :items="tables"
+                        item-value="id"
+                        item-text="name"
+                        v-model="editedItem.tables"
+                        label="tables"
+                        return-object
+                        multiple
+                      ></v-select>
+                    </v-flex>
+                    <v-flex xs12 sm6 md4>
+                      <v-text-field v-model="editedItem.note" label="note"></v-text-field>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="#967D65" flat @click.native="close">Cancel</v-btn>
+                <v-btn color="#967D65" flat @click.native="save">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-flex>
       </v-layout>
     </v-container>
@@ -59,21 +59,18 @@
       hide-actions
       class="elevation-1"
     >
-      <template slot="items" slot-scope="props">
-        <td class="text-xs-left">{{ props.item.time }}</td>
-        <td class="text-xs-left">{{ props.item.name }}</td>
-        <td class="text-xs-left">{{ props.item.person }}</td>
-        <td class="text-xs-left">
-          <template v-for="t in props.item.tables" >
-            {{ t.name }}
-          </template>
-        </td>
-        <td class="text-xs-left">{{ props.item.note }}</td>
-        <td class="justify-center layout px-0">
-          <v-btn icon class="mx-0" @click="editItem(props.item)">
-            <v-icon color="teal">edit</v-icon>
-          </v-btn>
-        </td>
+      <template slot="items" slot-scope="props" @click="editItem(props.item)">
+        <tr @click="editItem(props.item)">
+          <td class="text-xs-left">{{ props.item.time }}</td>
+          <td class="text-xs-left">{{ props.item.name }}</td>
+          <td class="text-xs-left">{{ props.item.person }}</td>
+          <td class="text-xs-left">
+            <template v-for="t in props.item.tables" >
+              {{ t.name }}
+            </template>
+          </td>
+          <td class="text-xs-left">{{ props.item.note }}</td>
+        </tr>
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
@@ -98,8 +95,7 @@
           { text: 'ご予約者名', value: 'name', sortable: false,},
           { text: '人数', value: 'person' },
           { text: 'テーブル', value: 'table' },
-          { text: '備考', value: 'note', sortable: false,},
-          { text: 'Action', align: 'justify-center', value: 'action', sortable: false,}
+          { text: '備考', value: 'note', sortable: false,}
         ],
         desserts: [],
         editedIndex: -1,

@@ -56,7 +56,6 @@
           v-model="shop.id"
           item-value="id"
           item-text="name"
-          return-object=true
         ></v-select>
       </v-toolbar-title>
       <v-spacer></v-spacer>
