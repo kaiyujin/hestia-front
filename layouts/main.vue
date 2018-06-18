@@ -53,8 +53,10 @@
       <v-toolbar-title>
         <v-select
           :items="shops"
-          v-model="shop.text"
-          item-value="text"
+          v-model="shop.id"
+          item-value="id"
+          item-text="name"
+          return-object=true
         ></v-select>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -163,7 +165,7 @@
     data: () => ({
       drawer: null,
       date: moment(new Date()).format('YYYY/MM/DD'),
-      shop: {id: 1, text: 'Bar hoobar'},
+      shop: {id: 1, name: 'Bar hoobar'},
       language: 'en',
       notification: null,
       notification_count: 2,
@@ -172,8 +174,8 @@
         {title: 'キャンセルがあります。'},
       ],
       shops: [
-        {id: 1, text: 'Bar hoobar'},
-        {id: 2, text: 'Sushi fizzbuzz'},
+        {id: 1, name: 'Bar hoobar'},
+        {id: 2, name: 'Sushi fizzbuzz'},
       ],
       items: [
         {
