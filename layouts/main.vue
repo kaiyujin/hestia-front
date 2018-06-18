@@ -49,8 +49,14 @@
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-toolbar-title>
-      <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
-      <v-toolbar-title>{{shopName}}</v-toolbar-title>
+      <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
+      <v-toolbar-title>
+        <v-select
+          :items="shops"
+          v-model="shop.text"
+          item-value="text"
+        ></v-select>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-bottom-sheet v-model="notification" class="pointer">
         <v-badge slot="activator" overlap color="red">
@@ -157,13 +163,17 @@
     data: () => ({
       drawer: null,
       date: moment(new Date()).format('YYYY/MM/DD'),
-      shopName: 'Restaurant hoobar',
+      shop: {id: 1, text: 'Bar hoobar'},
       language: 'en',
       notification: null,
       notification_count: 2,
       notifications: [
         {title: '予約が入りました。'},
         {title: 'キャンセルがあります。'},
+      ],
+      shops: [
+        {id: 1, text: 'Bar hoobar'},
+        {id: 2, text: 'Sushi fizzbuzz'},
       ],
       items: [
         {
