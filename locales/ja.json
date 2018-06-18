@@ -8,5 +8,7 @@
     "settings_table": "テーブル設定",
     "settings_web_reservation": "WEB予約設定",
     "logout": "ログアウト"
-  }
+  },
+  "reserve_day_from": "予約日from",
+  "reserve_day_to": "予約日to"
 }

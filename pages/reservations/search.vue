@@ -2,8 +2,67 @@
   <div>
     <v-container fluid>
       <v-layout row>
-        <v-flex xs6 sm10 md11></v-flex>
-        <v-flex xs6 sm2 md1>
+        <v-flex>
+          <v-menu
+            ref="fromPicker"
+            :close-on-content-click="false"
+            v-model="fromPicker"
+            :nudge-right="40"
+            :return-value.sync="fromDate"
+            lazy
+            transition="scale-transition"
+            offset-y
+            full-width
+            min-width="290px"
+          >
+            <v-text-field
+              slot="activator"
+              v-model="fromDate"
+              v-bind:label="this.$t('reserve_day_from')"
+              prepend-icon="event"
+              readonly
+            ></v-text-field>
+            <v-date-picker v-model="fromDate"
+                           locale="ja-jp"
+                           @input="$refs.fromPicker.save(fromDate)">
+            </v-date-picker>
+          </v-menu>
+        </v-flex>
+        <v-flex>
+          <v-menu
+            ref="toPicker"
+            :close-on-content-click="false"
+            v-model="toPicker"
+            :nudge-right="40"
+            :return-value.sync="toDate"
+            lazy
+            transition="scale-transition"
+            offset-y
+            full-width
+            min-width="290px"
+          >
+            <v-text-field
+              slot="activator"
+              v-model="toDate"
+              v-bind:label="this.$t('reserve_day_to')"
+              prepend-icon="event"
+              readonly
+            ></v-text-field>
+            <v-date-picker v-model="toDate"
+                           locale="ja-jp"
+                           @input="$refs.toPicker.save(toDate)">
+            </v-date-picker>
+          </v-menu>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs6 sm8 md10></v-flex>
+        <v-flex xs3 sm2 md1>
+          <v-btn fab dark small color="brown darken-3">
+            <v-icon dark>search</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs3 sm2 md1>
           <v-dialog v-model="dialog" max-width="800px">
             <v-btn fab dark small slot="activator" color="brown darken-3">
               <v-icon dark>add</v-icon>
@@ -84,6 +143,10 @@
     layout: 'main',
     data () {
       return {
+        fromDate: null,
+        fromPicker: false,
+        toDate: null,
+        toPicker: false,
         dialog: false,
         search: '',
         pagination: {

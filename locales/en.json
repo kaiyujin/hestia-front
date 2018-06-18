@@ -8,5 +8,7 @@
     "settings_table": "tables",
     "settings_web_reservation": "web reservation",
     "logout": "logout"
-  }
+  },
+  "reserve_day_from": "reserve day from",
+  "reserve_day_to": "reserve day to"
 }
