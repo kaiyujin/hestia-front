@@ -150,6 +150,8 @@
 
 <script>
   import moment from 'moment';
+  import axios from 'axios';
+
   export default {
     layout: 'main',
     data () {
@@ -269,6 +271,12 @@
       clearToDate () {
         this.toDate = null
       }
+    },
+    asyncData ({}) {
+      let data = axios.get(`http://localhost:8080/api/shops`)
+        .then((res) => {
+          console.log(res)
+        })
     }
   }
 </script>
