@@ -165,7 +165,7 @@
       drawer: null,
       date: moment(new Date()).format('YYYY/MM/DD'),
       shop: {id: 1, name: 'Bar hoobar'},
-      language: 'en',
+      language: 'ja',
       notification: null,
       notification_count: 2,
       notifications: [

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid>
-      <v-layout row>
+      <v-layout row wrap>
         <v-flex>
           <v-menu
             ref="fromPicker"
@@ -28,6 +28,11 @@
             </v-date-picker>
           </v-menu>
         </v-flex>
+        <v-flex md1>
+          <v-btn fab dark small color="brown darken-3" @click="clearFromDate">
+            <v-icon dark>clear</v-icon>
+          </v-btn>
+        </v-flex>
         <v-flex>
           <v-menu
             ref="toPicker"
@@ -53,6 +58,11 @@
                            @input="$refs.toPicker.save(toDate)">
             </v-date-picker>
           </v-menu>
+        </v-flex>
+        <v-flex md1>
+          <v-btn fab dark small color="brown darken-3" @click="clearToDate">
+            <v-icon dark>clear</v-icon>
+          </v-btn>
         </v-flex>
       </v-layout>
       <v-layout row>
@@ -139,13 +149,14 @@
 </template>
 
 <script>
+  import moment from 'moment';
   export default {
     layout: 'main',
     data () {
       return {
-        fromDate: null,
+        fromDate: moment(new Date()).format('YYYY-MM-DD'),
         fromPicker: false,
-        toDate: null,
+        toDate: moment(this.date).add(1, 'days').format('YYYY-MM-DD'),
         toPicker: false,
         dialog: false,
         search: '',
@@ -251,6 +262,12 @@
           this.desserts.push(this.editedItem)
         }
         this.close()
+      },
+      clearFromDate () {
+        this.fromDate = null
+      },
+      clearToDate () {
+        this.toDate = null
       }
     }
   }
