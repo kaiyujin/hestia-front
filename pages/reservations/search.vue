@@ -23,7 +23,7 @@
               readonly
             ></v-text-field>
             <v-date-picker v-model="fromDate"
-                           locale="ja-jp"
+                           v-bind:locale="dataPickerLocale"
                            @input="$refs.fromPicker.save(fromDate)">
             </v-date-picker>
           </v-menu>
@@ -156,6 +156,7 @@
     layout: 'main',
     data () {
       return {
+        dataPickerLocale: 'ja-jp',
         fromDate: moment(new Date()).format('YYYY-MM-DD'),
         fromPicker: false,
         toDate: moment(this.date).add(1, 'days').format('YYYY-MM-DD'),
