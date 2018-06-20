@@ -271,12 +271,6 @@
       clearToDate () {
         this.toDate = null
       }
-    },
-    asyncData ({}) {
-      let data = axios.get(`http://localhost:8080/api/shops`)
-        .then((res) => {
-          console.log(res)
-        })
     }
   }
 </script>
