@@ -94,20 +94,11 @@
         })
       }
     },
-    created() {
-      axios.get(`http://localhost:8080/api/shops/1`)
-        .then((res) => {
-          console.log(res.data)
-        })
-    },
     asyncData(context) {
 
       return axios.get(`http://localhost:8080/api/shops/1`)
         .then((res) => {
           const shop = res.data
-          shop['phone_number'] = '000'
-          shop['timezone_code'] = '1'
-          shop['country_code'] = ''
           console.log(shop)
           return {shop: shop}
         })
