@@ -94,13 +94,15 @@
         })
       }
     },
-    asyncData(context) {
+    asyncData({ query, error }) {
 
       return axios.get(`http://localhost:8080/api/shops/1`)
         .then((res) => {
           const shop = res.data
           console.log(shop)
           return {shop: shop}
+        }).catch((err) => {
+          error({ statusCode: 500, message: err.message })
         })
     }
   }
