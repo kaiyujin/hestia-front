@@ -32,10 +32,12 @@
           <v-select
             v-validate="'required'"
             :items="countries"
-            v-model="shop.country_code"
-            :error-messages="errors.collect('shop.country_code')"
+            item-value="code"
+            item-text="name"
+            v-model="shop.countryCode"
+            :error-messages="errors.collect('shop.countryCode')"
             label="Country"
-            data-vv-name="shop.country_code"
+            data-vv-name="shop.countryCode"
             required
           ></v-select>
         </v-flex>
@@ -68,10 +70,6 @@
   export default {
     layout: 'main',
     data: () => ({
-      countries: [
-        'Japan',
-        'Vietnam'
-      ],
       timezones: [
         'JST(+9:00)',
         'ICT(+7:00)'
@@ -94,16 +92,27 @@
         })
       }
     },
-    asyncData({ query, error }) {
+    async asyncData({ query, error }) {
 
-      return axios.get(`http://localhost:8080/api/shops/1`)
-        .then((res) => {
-          const shop = res.data
-          console.log(shop)
-          return {shop: shop}
-        }).catch((err) => {
+      const [shop,countries] = await Promise.all([
+        axios.get(`http://localhost:8080/api/client/shops/1`)
+          .then((res) => {
+            return res.data
+          }).catch((err) => {
+            error({ statusCode: 500, message: err.message })
+          }),
+        axios.get(`http://localhost:8080/api/master/countries`)
+          .then((res) => {
+            return res.data
+          }).catch((err) => {
           error({ statusCode: 500, message: err.message })
         })
+      ])
+      console.log(shop);
+      return {
+        shop: shop,
+        countries: countries
+      }
     }
   }
 </script>
