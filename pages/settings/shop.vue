@@ -46,16 +46,19 @@
           <v-select
             v-validate="'required'"
             :items="timezones"
-            v-model="shop.timezone_code"
-            :error-messages="errors.collect('shop.timezone_code')"
+            item-value="code"
+            item-text="name"
+            v-model="shop.timezoneCode"
+            :error-messages="errors.collect('shop.timezoneCode')"
             label="Timezone"
-            data-vv-name="shop.timezone_code"
+            data-vv-name="shop.timezoneCode"
             required
           ></v-select>
         </v-flex>
 
         <v-flex sm11 md11 class="text-xs-right">
-          <v-btn @click="submit" color="primary">submit</v-btn>
+          <v-btn @click="reset" >reset</v-btn>
+          <v-btn @click="submit" color="red accent-1" >save</v-btn>
         </v-flex>
         <v-flex sm1 md1 class="text-xs-right">
         </v-flex>
@@ -70,10 +73,6 @@
   export default {
     layout: 'main',
     data: () => ({
-      timezones: [
-        'JST(+9:00)',
-        'ICT(+7:00)'
-      ],
       dictionary: {
         attributes: {
 
@@ -90,11 +89,14 @@
         this.$validator.validateAll().then(result => {
           if (result) this.$router.push('/settings/shop')
         })
+      },
+      reset() {
+        window.location.reload(true)
       }
     },
     async asyncData({ query, error }) {
 
-      const [shop,countries] = await Promise.all([
+      const [shop,countries,timezones] = await Promise.all([
         axios.get(`http://localhost:8080/api/client/shops/1`)
           .then((res) => {
             return res.data
@@ -106,12 +108,18 @@
             return res.data
           }).catch((err) => {
           error({ statusCode: 500, message: err.message })
+        }),
+        axios.get(`http://localhost:8080/api/master/timezones`)
+          .then((res) => {
+            return res.data
+          }).catch((err) => {
+          error({ statusCode: 500, message: err.message })
         })
       ])
-      console.log(shop);
       return {
         shop: shop,
-        countries: countries
+        countries: countries,
+        timezones: timezones
       }
     }
   }
