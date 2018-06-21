@@ -67,7 +67,14 @@
           ></v-select>
         </v-flex>
 
-        <v-flex sm11 md11 class="text-xs-right">
+        <v-flex sm8 md8>
+          <div>
+            <v-alert v-model="alert" type="success" dismissible>
+              updated.
+            </v-alert>
+          </div>
+        </v-flex>
+        <v-flex sm3 md3 class="text-xs-right">
           <v-btn @click="reset" >reset</v-btn>
           <v-btn @click="submit" color="red accent-1" >save</v-btn>
         </v-flex>
@@ -84,6 +91,7 @@
   export default {
     layout: 'main',
     data: () => ({
+      alert: false,
       dictionary: {
         attributes: {
 
@@ -106,6 +114,8 @@
               countryCode: this.shop.countryCode,
               timezoneCode: this.shop.timezoneCode
             })
+            setTimeout(() => { this.alert = false }, 2000)
+            this.alert = true
             this.$router.push('/settings/shop')
           }
         })
