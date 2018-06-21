@@ -3,11 +3,11 @@
     <v-form ref="form">
     <v-container>
       <v-layout row wrap>
-        <v-flex sm5 md5>
+        <v-flex sm3 md3>
           <v-text-field
-            v-validate="'required|max:10'"
+            v-validate="'required|max:50'"
             v-model="shop.name"
-            :counter="10"
+            :counter="50"
             :error-messages="errors.collect('shop.name')"
             label="Shop Name"
             data-vv-name="shop.name"
@@ -15,7 +15,7 @@
           ></v-text-field>
         </v-flex>
         <v-flex sm1 md1></v-flex>
-        <v-flex sm5 md5>
+        <v-flex sm3 md3>
           <v-text-field
             v-validate="'required|max:255'"
             v-model="shop.email"
@@ -27,7 +27,18 @@
           ></v-text-field>
         </v-flex>
         <v-flex sm1 md1></v-flex>
-
+        <v-flex sm3 md3>
+          <v-text-field
+            v-validate="'required|max:255'"
+            v-model="shop.phoneNumber"
+            :counter="13"
+            :error-messages="errors.collect('shop.phoneNumber')"
+            label="phoneNumber"
+            data-vv-name="shop.phoneNumber"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex sm1 md1></v-flex>
         <v-flex sm3 md3>
           <v-select
             v-validate="'required'"
@@ -87,7 +98,16 @@
     methods: {
       submit() {
         this.$validator.validateAll().then(result => {
-          if (result) this.$router.push('/settings/shop')
+          if (result) {
+            axios.patch('http://localhost:8080/api/client/shops/1',{
+              name : this.shop.name,
+              email: this.shop.email,
+              phoneNumber: this.shop.phoneNumber,
+              countryCode: this.shop.countryCode,
+              timezoneCode: this.shop.timezoneCode
+            })
+            this.$router.push('/settings/shop')
+          }
         })
       },
       reset() {
