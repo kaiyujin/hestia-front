@@ -7,7 +7,7 @@
     >
       <v-list dense>
         <v-list-group
-          v-for="item in items"
+          v-for="item in menu_reservations"
           v-model="item.active"
           :key="item.title"
           :prepend-icon="item.action"
@@ -18,6 +18,36 @@
               <v-list-tile-title>{{ $t(item.title) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
+
+          <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="link(subItem.action)">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ $t(subItem.title) }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-group>
+
+        <v-list-tile @click="customers">
+          <v-list-tile-action>
+            <v-icon>person</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{$t('menu.customers')}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-group
+          v-for="item in menu_settings"
+          v-model="item.active"
+          :key="item.title"
+          :prepend-icon="item.action"
+          no-action
+        >
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ $t(item.title) }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
           <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="link(subItem.action)">
             <v-list-tile-content>
               <v-list-tile-title>{{ $t(subItem.title) }}</v-list-tile-title>
@@ -176,16 +206,16 @@
         {id: 1, name: 'Bar hoobar'},
         {id: 2, name: 'Sushi fizzbuzz'},
       ],
-      items: [
-        {
-          action: 'subtitles',
-          title: 'menu.reservation',
-          active: true,
-          items: [
-            {title: 'menu.reservation_calender', action: '/reservations'},
-            {title: 'menu.reservation_search', action: '/reservations/search'},
-          ]
-        },
+      menu_reservations: [{
+        action: 'subtitles',
+        title: 'menu.reservation',
+        active: true,
+        items: [
+          {title: 'menu.reservation_calender', action: '/reservations'},
+          {title: 'menu.reservation_search', action: '/reservations/search'},
+        ]
+      }],
+      menu_settings: [
         {
           action: 'settings',
           title: 'menu.settings',
@@ -215,6 +245,9 @@
       },
       logout() {
         this.$router.push('/')
+      },
+      customers() {
+        this.$router.push('/customers/')
       },
       prev_day() {
         this.date = moment(this.date).subtract(1, 'days').format('YYYY/MM/DD')
