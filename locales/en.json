@@ -15,5 +15,14 @@
     "internal_server_error": "internal server error"
   },
   "reserve_day_from": "reserve day from",
-  "reserve_day_to": "reserve day to"
+  "reserve_day_to": "reserve day to",
+  "new.item": "new item",
+  "edit.item": "edit item",
+  "reservation": {
+    "time": "来店時間",
+    "name": "来店時間",
+    "person": "来店時間",
+    "table": "来店時間",
+    "note": "備考"
+  }
 }

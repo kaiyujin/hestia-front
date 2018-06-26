@@ -112,8 +112,8 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="#967D65" flat @click.native="close">Cancel</v-btn>
-                <v-btn color="#967D65" flat @click.native="save">Save</v-btn>
+                <v-btn color="primary" flat @click.native="close">Cancel</v-btn>
+                <v-btn color="primary" flat @click.native="save">Save</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -168,11 +168,11 @@
         },
         selected: [],
         headers: [
-          { text: '来店時間', align: 'left', value: 'time'},
-          { text: 'ご予約者名', value: 'name', sortable: false,},
-          { text: '人数', value: 'person' },
-          { text: 'テーブル', value: 'table' },
-          { text: '備考', value: 'note', sortable: false,}
+          { text: this.$t('reservation.time'), align: 'left', value: 'time'},
+          { text: this.$t('reservation.name'), value: 'name', sortable: false,},
+          { text: this.$t('reservation.person'), value: 'person' },
+          { text: this.$t('reservation.table'), value: 'table' },
+          { text: this.$t('reservation.note'), value: 'note', sortable: false,}
         ],
         desserts: [],
         editedIndex: -1,
@@ -214,7 +214,7 @@
         return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
       },
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? this.$t('new_item') : this.$t('edit_item')
       }
     },
     methods: {

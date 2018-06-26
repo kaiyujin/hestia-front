@@ -188,7 +188,6 @@
 
 <script>
   import moment from 'moment';
-  import i18n from "../plugins/i18n";
 
   export default {
     data: () => ({

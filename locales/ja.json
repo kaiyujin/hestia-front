@@ -15,5 +15,14 @@
     "internal_server_error": "なにかがおかしいです。"
   },
   "reserve_day_from": "予約日from",
-  "reserve_day_to": "予約日to"
+  "reserve_day_to": "予約日to",
+  "new_item": "新規予約",
+  "edit_item": "予約変更",
+  "reservation": {
+    "time": "来店時間",
+    "name": "来店時間",
+    "person": "来店時間",
+    "table": "来店時間",
+    "note": "備考"
+  }
 }
