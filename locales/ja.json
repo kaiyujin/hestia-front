@@ -20,9 +20,9 @@
   "edit_item": "予約変更",
   "reservation": {
     "time": "来店時間",
-    "name": "来店時間",
-    "person": "来店時間",
-    "table": "来店時間",
+    "name": "ご予約者名",
+    "person": "人数",
+    "table": "テーブル",
     "note": "備考"
   }
 }

@@ -85,13 +85,13 @@
                 <v-container grid-list-md>
                   <v-layout wrap>
                     <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.time" label="time"></v-text-field>
+                      <v-text-field v-model="editedItem.time" v-bind:label="this.$t('reservation.time')"></v-text-field>
                     </v-flex>
                     <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.name" label="name"></v-text-field>
+                      <v-text-field v-model="editedItem.name" v-bind:label="this.$t('reservation.name')"></v-text-field>
                     </v-flex>
                     <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.person" label="person"></v-text-field>
+                      <v-text-field v-model="editedItem.person" v-bind:label="this.$t('reservation.person')"></v-text-field>
                     </v-flex>
                     <v-flex xs12 sm6 md4>
                       <v-select
@@ -99,13 +99,13 @@
                         item-value="id"
                         item-text="name"
                         v-model="editedItem.tables"
-                        label="tables"
+                        v-bind:label="this.$t('reservation.table')"
                         return-object
                         multiple
                       ></v-select>
                     </v-flex>
                     <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.note" label="note"></v-text-field>
+                      <v-text-field v-model="editedItem.note" v-bind:label="this.$t('reservation.note')"></v-text-field>
                     </v-flex>
                   </v-layout>
                 </v-container>
