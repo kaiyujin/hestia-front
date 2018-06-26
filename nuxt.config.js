@@ -3,8 +3,12 @@ module.exports = {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics',
     //'@nuxtjs/pwa'
   ],
+  'google-analytics': {
+    id: 'UA-TEST-2'
+  },
   axios: {
   },
   proxy: {
