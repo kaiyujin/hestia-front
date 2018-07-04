@@ -12,7 +12,8 @@
   },
   "error": {
     "page_not_found": "ページが見つかりません",
-    "internal_server_error": "なにかがおかしいです。"
+    "internal_server_error": "なにかがおかしいです。",
+    "login_failed": "IDかパスワードが間違っています"
   },
   "reserve_day_from": "予約日from",
   "reserve_day_to": "予約日to",
