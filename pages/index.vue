@@ -60,7 +60,8 @@
             axios.post('http://localhost:8080/api/auth/login', params)
               .then(
                 response => {
-                  console.log(response.status)
+                  console.log(response.data.token)
+                  this.$store.dispatch('writeToken',response.data.token)
                   this.$router.push('/reservations/')
                 }
               )

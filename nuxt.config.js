@@ -10,6 +10,14 @@ module.exports = {
     id: 'UA-TEST-2'
   },
   axios: {
+    credentials: true,
+    requestInterceptor: (config, { store }) => {
+      if (store.state.token) {
+        config.headers.common['Authorization'] = `Bearer ${store.state.token}`
+      }
+
+      return config
+    }
   },
   proxy: {
     '/api': 'http://localhost:8080'
@@ -43,7 +51,10 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~/plugins/vee-validate','~/plugins/i18n.js'],
+  plugins: [
+    '~/plugins/vee-validate',
+    '~/plugins/i18n.js'
+  ],
   /*
   ** Build configuration
   */
