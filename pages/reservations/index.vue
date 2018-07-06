@@ -9,6 +9,9 @@
     layout: 'main',
     data () {
       return {}
+    },
+    mounted () {
+      console.log(this.$store.state.token)
     }
   }
 </script>

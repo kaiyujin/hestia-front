@@ -14,16 +14,6 @@ export const mutations = {
   setToken (state, { token }) {
     state.token = token
     state.loggedIn = Boolean(token)
-
-    // Store token in cookies
-    console.log(token)
-    if (inBrowser) {
-      if (token) {
-        this.$cookies.set('token', token, { expires: 30 })
-      } else {
-        this.$cookies.remove('token')
-      }
-    }
   }
 
 }
@@ -35,6 +25,5 @@ export const actions = {
   logout ({ commit }) {
     // Revoke access token
     commit('setToken', { token: null })
-    this.$cookies.remove('token')
   }
 }
