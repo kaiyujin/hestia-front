@@ -13,7 +13,7 @@ module.exports = {
     credentials: true,
     requestInterceptor: (config, { store }) => {
       if (store.state.token) {
-        config.headers.common['Authorization'] = `Bearer ${store.state.token}`
+        config.headers.common['Authorization'] = `${store.state.token}`
       }
 
       return config

@@ -113,7 +113,11 @@
               phoneNumber: this.shop.phoneNumber,
               countryCode: this.shop.countryCode,
               timezoneCode: this.shop.timezoneCode
-            })
+            },
+              {
+                headers: {'AUTHORIZATION': this.$store.state.token}
+              }
+            )
             setTimeout(() => { this.alert = false }, 2000)
             this.alert = true
             this.$router.push('/settings/shop')
@@ -124,22 +128,22 @@
         window.location.reload(true)
       }
     },
-    async asyncData({ query, error }) {
-
+    async asyncData({ store, error }) {
+      const headers = { headers: {'AUTHORIZATION': store.state.token} }
       const [shop,countries,timezones] = await Promise.all([
-        axios.get(`http://localhost:8080/api/client/shops/1`)
+        axios.get(`http://localhost:8080/api/client/shops/1`, headers)
           .then((res) => {
             return res.data
           }).catch((err) => {
             error({ statusCode: 500, message: err.message })
           }),
-        axios.get(`http://localhost:8080/api/master/countries`)
+        axios.get(`http://localhost:8080/api/client/countries`, headers)
           .then((res) => {
             return res.data
           }).catch((err) => {
           error({ statusCode: 500, message: err.message })
         }),
-        axios.get(`http://localhost:8080/api/master/timezones`)
+        axios.get(`http://localhost:8080/api/client/timezones`, headers)
           .then((res) => {
             return res.data
           }).catch((err) => {
