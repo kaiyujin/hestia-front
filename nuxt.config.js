@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
@@ -53,7 +54,8 @@ module.exports = {
   loading: { color: '#3B8070' },
   plugins: [
     '~/plugins/vee-validate',
-    '~/plugins/i18n.js'
+    '~/plugins/i18n.js',
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
   /*
   ** Build configuration
