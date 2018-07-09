@@ -243,6 +243,7 @@
         this.$router.push(action)
       },
       logout() {
+        this.$store.dispatch('logout')
         this.$router.push('/')
       },
       customers() {
