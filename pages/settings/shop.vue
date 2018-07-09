@@ -130,6 +130,12 @@
     },
     async asyncData({ store, error }) {
       const headers = { headers: {'AUTHORIZATION': store.state.token} }
+      axios.get(`http://localhost:8080/api/auth/refreshToken`, headers)
+        .then((res) => {
+          store.dispatch('writeToken',res.data.token)
+        }).catch((err) => {
+          error({ statusCode: 401, message: err.message })
+      })
       const [shop,countries,timezones] = await Promise.all([
         axios.get(`http://localhost:8080/api/client/shops/1`, headers)
           .then((res) => {
